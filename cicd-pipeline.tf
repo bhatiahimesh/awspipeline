@@ -70,7 +70,7 @@ resource "aws_codepipeline" "cicd_pipeline" {
             output_artifacts = ["tf-code"]
             configuration = {
                 FullRepositoryId = "bhatiahimesh/awspipeline"
-                BranchName   = "master"
+                BranchName   = "main"
                 ConnectionArn = var.codestar_credentails
                 OutputArtifactFormat = "CODE_ZIP"
             }
