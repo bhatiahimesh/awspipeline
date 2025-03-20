@@ -93,7 +93,7 @@ resource "aws_codepipeline" "cicd_pipeline" {
             owner    = "AWS"
             configuration = {
                 CustomData = "Please review the Terraform Plan before proceeding to Apply."
-                NotificationArn = aws_sns_topic.pipeline_approval.arn  # (Optional) Sends an email notification
+                # NotificationArn = aws_sns_topic.pipeline_approval.arn  # (Optional) Sends an email notification
             }
         }
     }
