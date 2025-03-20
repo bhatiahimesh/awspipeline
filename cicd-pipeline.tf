@@ -7,16 +7,12 @@ resource "aws_codebuild_project" "tf-plan" {
     type = "CODEPIPELINE"
   }
 
-  environment {
+environment {
     compute_type                = "BUILD_GENERAL1_SMALL"
     image                       = "hashicorp/terraform:0.14.3"
     type                        = "LINUX_CONTAINER"
-    image_pull_credentials_type = "SERVICE_ROLE"
-    registry_credential{
-        credential = var.dockerhub_credentials
-        credential_provider = "SECRETS_MANAGER"
-    }
- }
+    image_pull_credentials_type = "CODEBUILD"
+}
  source {
      type   = "CODEPIPELINE"
      buildspec = file("buildspec/plan-buildspec.yml")
