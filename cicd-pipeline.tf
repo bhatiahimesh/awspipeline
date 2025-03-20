@@ -83,7 +83,20 @@ resource "aws_codepipeline" "cicd_pipeline" {
             }
         }
     }
-
+     stage {
+        name = "Approval"
+        action {
+            name     = "ManualApproval"
+            category = "Approval"
+            provider = "Manual"
+            version  = "1"
+            owner    = "AWS"
+            configuration = {
+                CustomData = "Please review the Terraform Plan before proceeding to Apply."
+                NotificationArn = aws_sns_topic.pipeline_approval.arn  # (Optional) Sends an email notification
+            }
+        }
+    }
     stage {
         name ="Deploy"
         action{
